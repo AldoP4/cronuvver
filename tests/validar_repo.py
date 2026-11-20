@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
-SCRIPT = RAIZ / "skills" / "reloj" / "scripts" / "reloj.py"
+SCRIPT = RAIZ / "skills" / "ahora" / "scripts" / "ahora.py"
 errores: list[str] = []
 
 
@@ -40,14 +40,14 @@ for evento in ("SessionStart", "UserPromptSubmit"):
     revisar((RAIZ / ruta).exists(), f"el hook {evento} apunta a {ruta}, que no existe")
 
 # Skills con frontmatter
-for skill in ("reloj", "plan-real"):
+for skill in ("ahora", "plan-real"):
     texto = (RAIZ / "skills" / skill / "SKILL.md").read_text(encoding="utf-8")
     m = re.match(r"^---\n(.*?)\n---\n", texto, re.S)
     revisar(m is not None and f"name: {skill}" in m.group(1), f"{skill}: frontmatter inválido")
 
 # Modo normal
 r = correr(["--json", "--hasta", "2030-01-01", "--habiles", "5"])
-revisar(r.returncode == 0, f"reloj.py --json falló: {r.stderr}")
+revisar(r.returncode == 0, f"ahora.py --json falló: {r.stderr}")
 if r.returncode == 0:
     d = json.loads(r.stdout)
     revisar(d["hoy"] == datetime.now().astimezone().date().isoformat(), "la fecha de hoy no coincide con el sistema")
