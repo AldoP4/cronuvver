@@ -1,0 +1,13 @@
+{
+  "name": "reloj",
+  "version": "0.1.0",
+  "description": "Noción del tiempo real para Claude Code: fecha y hora en cada mensaje, aviso de cuánto tiempo pasó desde el anterior, y planes con fechas de verdad (trabajo del agente, de la persona y esperas).",
+  "author": {
+    "name": "Aldo Pazzi",
+    "url": "https://github.com/AldoP4"
+  },
+  "homepage": "https://github.com/AldoP4/reloj",
+  "repository": "https://github.com/AldoP4/reloj",
+  "license": "MIT",
+  "keywords": ["tiempo", "fecha", "hora", "time-awareness", "planning", "estimation", "hooks", "claude-code", "español"]
+}

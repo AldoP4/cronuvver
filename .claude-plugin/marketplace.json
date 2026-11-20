@@ -1,0 +1,24 @@
+{
+  "name": "reloj",
+  "owner": {
+    "name": "Aldo Pazzi",
+    "url": "https://github.com/AldoP4"
+  },
+  "metadata": {
+    "description": "Marketplace del plugin reloj: noción del tiempo real para Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "reloj",
+      "description": "Fecha y hora en cada mensaje, aviso de cuánto tiempo pasó, y planes con fechas de verdad.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Aldo Pazzi",
+        "url": "https://github.com/AldoP4"
+      },
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/AldoP4/reloj"
+    }
+  ]
+}
