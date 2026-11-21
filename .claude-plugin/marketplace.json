@@ -1,24 +1,24 @@
 {
-  "name": "ahora",
+  "name": "cronuvver",
   "owner": {
     "name": "Aldo Pazzi",
     "url": "https://github.com/AldoP4"
   },
   "metadata": {
-    "description": "Marketplace del plugin ahora: noción del tiempo real para Claude Code."
+    "description": "Marketplace del plugin Cronuvver: noción del tiempo real para Claude Code."
   },
   "plugins": [
     {
-      "name": "ahora",
+      "name": "cronuvver",
       "description": "Fecha y hora en cada mensaje, aviso de cuánto tiempo pasó, y planes con fechas de verdad.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Aldo Pazzi",
         "url": "https://github.com/AldoP4"
       },
       "source": "./",
       "category": "productivity",
-      "homepage": "https://github.com/AldoP4/ahora"
+      "homepage": "https://github.com/AldoP4/cronuvver"
     }
   ]
 }

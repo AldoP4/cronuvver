@@ -12,7 +12,7 @@ user-invocable: true
 Los modelos estiman como si un humano escribiera todo el código: dicen "esto toma 2 o 3 semanas" y luego lo hacen en 20 minutos. Y al revés: ignoran lo que de verdad tarda, que son las personas y las esperas. Además no saben qué día es. Esta skill corrige las dos cosas.
 
 ## Paso 1: el reloj
-Corre el script del reloj, que está en la skill hermana: `../ahora/scripts/ahora.py` desde la carpeta de esta skill (`python3`, o `python` en Windows; si no hay Python, `date`). Si no lo encuentras, búscalo con Glob (`**/ahora/scripts/ahora.py`). Toda fecha del plan se calcula desde ahí. Para fechas futuras usa `--habiles N` (qué día cae dentro de N días hábiles) y `--hasta AAAA-MM-DD` (cuánto falta). Si la persona vive en otra zona, `--utc <horas>`.
+Corre el script del reloj, que está en la skill hermana: `../cronuvver/scripts/cronuvver.py` desde la carpeta de esta skill (`python3`, o `python` en Windows; si no hay Python, `date`). Si no lo encuentras, búscalo con Glob (`**/cronuvver/scripts/cronuvver.py`). Toda fecha del plan se calcula desde ahí. Para fechas futuras usa `--habiles N` (qué día cae dentro de N días hábiles) y `--hasta AAAA-MM-DD` (cuánto falta). Si la persona vive en otra zona, `--utc <horas>`.
 
 ## Paso 2: el contexto de la persona
 Sin preguntar de más, junta (de la conversación o con una sola pregunta):
@@ -39,15 +39,15 @@ Reglas:
 
 ## Paso 4: convierte a fechas
 1. Acomoda las tareas de la persona en sus horas disponibles.
-2. Suma las esperas en días corridos o hábiles según corresponda (con `ahora.py --habiles`).
+2. Suma las esperas en días corridos o hábiles según corresponda (con `cronuvver.py --habiles`).
 3. Cada fecha se escribe con **día de la semana** ("viernes 27 de noviembre"), nunca solo "en una semana".
 4. Si hay una fecha fija, calcula la holgura: cuántos días sobran o faltan.
-5. `ahora.py` no descuenta feriados. Si el plan cruza fechas que suelen ser feriado o vacaciones (Navidad, Año Nuevo, Semana Santa, feriados del país), avísalo y suma holgura.
+5. `cronuvver.py` no descuenta feriados. Si el plan cruza fechas que suelen ser feriado o vacaciones (Navidad, Año Nuevo, Semana Santa, feriados del país), avísalo y suma holgura.
 
 ## Paso 5: entrega
 
 ```
-Hoy: [fecha de ahora.py]
+Hoy: [fecha de cronuvver.py]
 
 | Tarea | Tipo | Tiempo activo | Espera | Lista para |
 |---|---|---|---|---|
@@ -61,7 +61,7 @@ Supuestos: horas por semana, quién aprueba, esperas sin fuente.
 Primero la fecha realista en una línea; luego la tabla.
 
 ## Paso 6 (opcional): calibrar
-Si la carpeta del proyecto tiene `.ahora/estimaciones.jsonl`, léelo antes de estimar: cada línea es `{"fecha": "...", "tarea": "...", "tipo": "agente|persona|espera", "estimado_min": N, "real_min": N}`. Si las tareas del mismo tipo suelen tardar más (o menos) de lo estimado, ajusta con esa proporción y dilo.
+Si la carpeta del proyecto tiene `.cronuvver/estimaciones.jsonl`, léelo antes de estimar: cada línea es `{"fecha": "...", "tarea": "...", "tipo": "agente|persona|espera", "estimado_min": N, "real_min": N}`. Si las tareas del mismo tipo suelen tardar más (o menos) de lo estimado, ajusta con esa proporción y dilo.
 
 Cuando una tarea del plan termine y se sepa cuánto tardó, ofrece agregar la línea al archivo (solo con el OK de la persona). Así cada proyecto estima mejor que el anterior.
 

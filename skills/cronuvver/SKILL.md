@@ -1,17 +1,17 @@
 ---
-name: ahora
+name: cronuvver
 description: "Dice la fecha y hora reales y hace cuentas de calendario: cuánto falta para una fecha, qué día cae dentro de N días hábiles, en qué semana estamos, cuánto falta para fin de mes, trimestre o año. Úsala antes de afirmar qué día es, de decir 'este año', 'recientemente' o 'el mes pasado', y cada vez que haya que calcular un plazo o una fecha límite."
-argument-hint: 'ahora | ahora ¿cuánto falta para el 1 de enero? | ahora ¿qué día cae en 10 días hábiles?'
+argument-hint: 'cronuvver | cronuvver ¿cuánto falta para el 1 de enero? | cronuvver ¿qué día cae en 10 días hábiles?'
 allowed-tools: Bash
 license: MIT
 user-invocable: true
 ---
 
-# /ahora
+# /cronuvver
 
 No sabes qué día es: tu idea del "hoy" viene de tus datos de entrenamiento. Antes de decir una fecha o calcular un plazo, pregúntale al reloj de la computadora.
 
-1. Corre `scripts/ahora.py`, que está en la carpeta de esta skill (`python3`, o `python` en Windows). Si no hay Python, usa `date`.
+1. Corre `scripts/cronuvver.py`, que está en la carpeta de esta skill (`python3`, o `python` en Windows). Si no hay Python, usa `date`.
    - Cuánto falta: `--hasta AAAA-MM-DD` (acepta varias fechas).
    - Qué día cae: `--habiles N`.
    - Otra zona horaria: `--utc <horas>` (por ejemplo `--utc -3`).

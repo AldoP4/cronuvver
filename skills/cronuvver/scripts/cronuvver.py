@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""ahora: le da a un agente de IA noción del tiempo real.
+"""Cronuvver: le da a un agente de IA noción del tiempo real.
 
 Los modelos no saben qué día es ni cuánto tiempo pasó entre un mensaje y otro.
 Este script lo calcula con el reloj de la computadora.
 
 Uso humano o desde el agente:
-    python ahora.py                          # hoy, hora, semana, cierres de mes, trimestre y año
-    python ahora.py --hasta 2027-01-01       # cuánto falta (días corridos y hábiles)
-    python ahora.py --habiles 5              # qué fecha es dentro de 5 días hábiles
-    python ahora.py --utc -3                 # con la zona horaria de otra persona
-    python ahora.py --json                   # salida en JSON
+    python cronuvver.py                          # hoy, hora, semana, cierres de mes, trimestre y año
+    python cronuvver.py --hasta 2027-01-01       # cuánto falta (días corridos y hábiles)
+    python cronuvver.py --habiles 5              # qué fecha es dentro de 5 días hábiles
+    python cronuvver.py --utc -3                 # con la zona horaria de otra persona
+    python cronuvver.py --json                   # salida en JSON
 
 Uso como hook de Claude Code (lee el evento por stdin y nunca falla):
-    python ahora.py --hook
+    python cronuvver.py --hook
 
 Solo biblioteca estándar de Python 3.8+.
 """
@@ -101,9 +101,9 @@ def describir_hasta(hoy: date, objetivo: date) -> dict:
 
 
 def ahora_con_zona(utc: float | None) -> datetime:
-    if utc is None and os.environ.get("AHORA_UTC"):
+    if utc is None and os.environ.get("CRONUVVER_UTC"):
         try:
-            utc = float(os.environ["AHORA_UTC"])
+            utc = float(os.environ["CRONUVVER_UTC"])
         except ValueError:
             utc = None
     if utc is not None:
@@ -119,7 +119,7 @@ def zona_texto(dt: datetime) -> str:
 # ---------- estado (para saber cuánto tiempo pasó) ----------
 
 def ruta_estado() -> Path:
-    base = os.environ.get("CLAUDE_PLUGIN_DATA") or os.path.join(os.path.expanduser("~"), ".claude", "ahora")
+    base = os.environ.get("CLAUDE_PLUGIN_DATA") or os.path.join(os.path.expanduser("~"), ".claude", "cronuvver")
     return Path(base) / "estado.json"
 
 
@@ -169,7 +169,7 @@ def modo_hook() -> int:
 
         base = f"{fecha_corta(ahora.date())}, {ahora.strftime('%H:%M')} ({zona_texto(ahora)})"
         if nombre == "SessionStart":
-            texto = (f"[ahora] Hoy es {fecha_larga(ahora.date())}, {ahora.strftime('%H:%M')} hora local "
+            texto = (f"[cronuvver] Hoy es {fecha_larga(ahora.date())}, {ahora.strftime('%H:%M')} hora local "
                      f"({zona_texto(ahora)}). Calcula todo lo de 'hoy', 'reciente', 'el año pasado' y los plazos "
                      f"desde esta fecha, no desde tus datos de entrenamiento.")
             anterior = _parse(estado.get("proyectos", {}).get(proyecto, ""))
@@ -177,7 +177,7 @@ def modo_hook() -> int:
                 texto += f" La última actividad en este proyecto fue hace {describir_hueco(ahora - anterior)} ({fecha_corta(anterior.date())})."
         else:
             anterior = _parse(estado.get("sesiones", {}).get(sesion, "")) if sesion else None
-            texto = f"[ahora] {base}"
+            texto = f"[cronuvver] {base}"
             if anterior:
                 hueco = ahora - anterior
                 texto += f" · pasaron {describir_hueco(hueco)} desde el mensaje anterior"

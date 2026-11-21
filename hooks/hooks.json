@@ -1,12 +1,12 @@
 {
-  "description": "ahora: le dice a Claude qué día y hora es al empezar cada sesión y en cada mensaje, y cuánto tiempo pasó desde el anterior.",
+  "description": "Cronuvver: le dice a Claude qué día y hora es al empezar cada sesión y en cada mensaje, y cuánto tiempo pasó desde el anterior.",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "for P in python3 python py; do \"$P\" -c '' </dev/null >/dev/null 2>&1 && break; done; \"$P\" \"${CLAUDE_PLUGIN_ROOT}/skills/ahora/scripts/ahora.py\" --hook",
+            "command": "for P in python3 python py; do \"$P\" -c '' </dev/null >/dev/null 2>&1 && break; done; \"$P\" \"${CLAUDE_PLUGIN_ROOT}/skills/cronuvver/scripts/cronuvver.py\" --hook",
             "timeout": 10
           }
         ]
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "for P in python3 python py; do \"$P\" -c '' </dev/null >/dev/null 2>&1 && break; done; \"$P\" \"${CLAUDE_PLUGIN_ROOT}/skills/ahora/scripts/ahora.py\" --hook",
+            "command": "for P in python3 python py; do \"$P\" -c '' </dev/null >/dev/null 2>&1 && break; done; \"$P\" \"${CLAUDE_PLUGIN_ROOT}/skills/cronuvver/scripts/cronuvver.py\" --hook",
             "timeout": 10
           }
         ]
